@@ -21,7 +21,7 @@ class Etat
     /**
      * @var Collection<int, Exemplaire>
      */
-    #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'etat')]
+    #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'Etat')]
     private Collection $exemplaires;
 
     public function __construct()
@@ -29,6 +29,11 @@ class Etat
         $this->exemplaires = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+    return $this->getName();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

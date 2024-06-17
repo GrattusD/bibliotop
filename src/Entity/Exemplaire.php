@@ -15,52 +15,57 @@ class Exemplaire
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?livre $livre = null;
+    private ?Livre $livre = null;
 
     #[ORM\ManyToOne(inversedBy: 'exemplaires')]
-    private ?etat $etat = null;
+    private ?Etat $etat = null;
 
     #[ORM\ManyToOne(inversedBy: 'exemplaires')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?stockage $stockage = null;
+    private ?Stockage $stockage = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLivre(): ?livre
+    public function __toString()
+    {
+    return $this->getName();
+    }
+
+    public function getLivre(): ?Livre
     {
         return $this->livre;
     }
 
-    public function setLivre(?livre $livre): static
+    public function setLivre(?Livre $livre): static
     {
-        $this->livre = $livre;
+        $this->Livre = $livre;
 
         return $this;
     }
 
-    public function getEtat(): ?etat
+    public function getEtat(): ?Etat
     {
         return $this->etat;
     }
 
     public function setEtat(?etat $etat): static
     {
-        $this->etat = $etat;
+        $this->Etat = $etat;
 
         return $this;
     }
 
-    public function getStockage(): ?stockage
+    public function getStockage(): ?Stockage
     {
-        return $this->stockage;
+        return $this->Stockage;
     }
 
-    public function setStockage(?stockage $stockage): static
+    public function setStockage(?Stockage $stockage): static
     {
-        $this->stockage = $stockage;
+        $this->Stockage = $stockage;
 
         return $this;
     }

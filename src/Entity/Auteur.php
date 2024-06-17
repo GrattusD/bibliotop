@@ -24,12 +24,17 @@ class Auteur
     /**
      * @var Collection<int, Livre>
      */
-    #[ORM\OneToMany(targetEntity: Livre::class, mappedBy: 'auteur')]
+    #[ORM\OneToMany(targetEntity: Livre::class, mappedBy: 'Auteur')]
     private Collection $livres;
 
     public function __construct()
     {
         $this->livres = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+    return $this->getPrenom().' '.$this->getNom();
     }
 
     public function getId(): ?int
