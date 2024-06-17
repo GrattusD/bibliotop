@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\EmpruntRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmpruntRepository;
 
 #[ORM\Entity(repositoryClass: EmpruntRepository::class)]
 class Emprunt
@@ -101,16 +102,16 @@ class Emprunt
         return $this;
     }
     
-    public function setDateLimite(): self
-    {
-        $dateLimite = DateTime::createFromInterface($this->getDateEmprunt());
-        $dateLimite ->modify('+15days');
-        $this->setdateLimite($dateLimite);
-        return $this;
-    }
+
     public function getDateLimite(): ?\DateTimeInterface
     {
-        return $this->dateLimite;
+        $dateLimite= null;
+        if ($this->getDateEmprunt()){
+
+            $dateLimite = DateTime::createFromInterface($this->getDateEmprunt());
+            $dateLimite->modify('+15days');
+            }
+        return $dateLimite;
     }
 }
 
