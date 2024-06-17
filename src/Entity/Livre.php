@@ -34,7 +34,7 @@ class Livre
 
     public function __toString()
     {
-    return $this->getName();
+    return $this->getTitre().' - '.$this->getAuteur().' - '.$this->getEditeur();
     }
     
     public function getEditeur(): ?editeur

@@ -31,7 +31,7 @@ class Exemplaire
 
     public function __toString()
     {
-    return $this->getName();
+    return $this->getID().' '.$this->getLivre().' - '.$this->getEtat();
     }
 
     public function getLivre(): ?Livre
@@ -41,7 +41,7 @@ class Exemplaire
 
     public function setLivre(?Livre $livre): static
     {
-        $this->Livre = $livre;
+        $this->livre = $livre;
 
         return $this;
     }
@@ -53,19 +53,19 @@ class Exemplaire
 
     public function setEtat(?etat $etat): static
     {
-        $this->Etat = $etat;
+        $this->etat = $etat;
 
         return $this;
     }
 
     public function getStockage(): ?Stockage
     {
-        return $this->Stockage;
+        return $this->stockage;
     }
 
     public function setStockage(?Stockage $stockage): static
     {
-        $this->Stockage = $stockage;
+        $this->stockage = $stockage;
 
         return $this;
     }

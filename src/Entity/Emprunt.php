@@ -15,10 +15,10 @@ class Emprunt
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'emprunts')]
-    private ?adherent $adherent = null;
+    private ?Adherent $adherent = null;
 
     #[ORM\ManyToOne]
-    private ?exemplaire $exemplaire = null;
+    private ?Exemplaire $exemplaire = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_emprunt = null;
@@ -28,6 +28,11 @@ class Emprunt
 
     #[ORM\Column]
     private ?bool $statut = null;
+
+    public function __toString()
+    {
+    return $this->getId().' '.$this->getExemplaire();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +80,8 @@ class Emprunt
         return $this->date_retour;
     }
 
+
+
     public function setDateRetour(?\DateTimeInterface $date_retour): static
     {
         $this->date_retour = $date_retour;
@@ -93,4 +100,17 @@ class Emprunt
 
         return $this;
     }
+    
+    public function setDateLimite(): self
+    {
+        $dateLimite = DateTime::createFromInterface($this->getDateEmprunt());
+        $dateLimite ->modify('+15days');
+        $this->setdateLimite($dateLimite);
+        return $this;
+    }
+    public function getDateLimite(): ?\DateTimeInterface
+    {
+        return $this->dateLimite;
+    }
 }
+

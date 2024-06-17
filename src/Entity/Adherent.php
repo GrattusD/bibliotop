@@ -40,7 +40,7 @@ class Adherent
 
     public function __toString()
     {
-    return $this->getName();
+    return $this->getId().' - '.$this->getPrenom().' '.$this->getNom();
     }
 
     public function getId(): ?int

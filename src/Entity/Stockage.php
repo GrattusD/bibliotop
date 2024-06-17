@@ -31,7 +31,7 @@ class Stockage
 
     public function __toString()
     {
-    return $this->getName();
+    return $this->getEmplacement();
     }
     
     public function getId(): ?int
